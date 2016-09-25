@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
@@ -7,6 +8,8 @@ public class PlayerController : MonoBehaviour {
 	public float rotateSpeed;
 	private bool[] skills = new bool[7];
 	private bool[] skillsStat = new bool[7];
+	public Image backgroundImage;
+	private VirtualJoystick joystick;
 
 	private Rigidbody rb;
 
@@ -17,9 +20,11 @@ public class PlayerController : MonoBehaviour {
 
 	void Update()
 	{
+		joystick = backgroundImage.GetComponent<VirtualJoystick> ();
 		transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed);
-		var x = Input.GetAxis("Horizontal") * Time.deltaTime * rotateSpeed;
+		//var x = Input.GetAxis("Horizontal") * Time.deltaTime * rotateSpeed;
 		// var z = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
+		var x = joystick.Horizontal() * Time.deltaTime * rotateSpeed;
 		transform.Rotate(0, x, 0);
 		// transform.Translate(0, 0, z);
 
@@ -31,7 +36,7 @@ public class PlayerController : MonoBehaviour {
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
 		rb.AddForce (movement * moveSpeed);
-		*/
+
 		if (Input.GetKeyUp (KeyCode.Space)) {
 			for (int i = 0; i < skills.Length; i++) {
 				if (skills [i]) {
@@ -40,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 		}
+*/
 	}
 
 	void OnTriggerEnter(Collider other) 
@@ -50,6 +56,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	/*
 	void StartSkill(int index)
 	{
 		switch (index) {
@@ -90,6 +97,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		cam.transform.position = position;
 	}
+	*/
 
 	public bool[] getSkillsArray()
 	{
