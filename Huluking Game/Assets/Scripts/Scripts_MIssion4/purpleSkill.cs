@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
-public class purpleSkill : MonoBehaviour {
+public class purpleSkill : MonoBehaviour, IPointerDownHandler {
 	public GameObject player;
 	public GameObject bullet;
 
@@ -16,9 +16,7 @@ public class purpleSkill : MonoBehaviour {
 
 	void PurpleSkill()
 	{
-		Debug.Log ("adf");
 		//Camera cam = GetComponentInChildren<Camera> ();
-		Vector3 position = player.transform.position;
 		if (flag) {
 			Instantiate(bullet, player.transform.position, player.transform.rotation);
 		}
