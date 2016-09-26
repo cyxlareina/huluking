@@ -1,106 +1,82 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
 	public float moveSpeed;
 	public float rotateSpeed;
-	private bool[] skills = new bool[7];
-	private bool[] skillsStat = new bool[7];
 	public Image backgroundImage;
+	public Material redMaterial;
+	public Image skillButton;
+
+	private bool restart = false;
+	private bool skillFlag = false;
 	private VirtualJoystick joystick;
+	private Renderer rend;
 
-	private Rigidbody rb;
-
-	void Start ()
+	void Start()
 	{
-		rb = GetComponent<Rigidbody>();
+		restart = false;
+		skillFlag = false;
+		joystick = backgroundImage.GetComponent<VirtualJoystick> ();
+		if (joystick == null) {
+			Debug.Log ("joystick is null");
+			return;
+		}
+		if (skillButton == null) {
+			Debug.Log ("skillButton is null");
+			return;
+		}
+		rend = GetComponent<Renderer> ();
+		rend.enabled = true;
 	}
 
 	void Update()
 	{
-		joystick = backgroundImage.GetComponent<VirtualJoystick> ();
+
 		transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed);
-		//var x = Input.GetAxis("Horizontal") * Time.deltaTime * rotateSpeed;
-		// var z = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
 		var x = joystick.Horizontal() * Time.deltaTime * rotateSpeed;
 		transform.Rotate(0, x, 0);
+		// var x = Input.GetAxis("Horizontal") * Time.deltaTime * rotateSpeed;
+		// var z = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
 		// transform.Translate(0, 0, z);
 
 		transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed);
+
+		if (transform.position.y < -10) {
+			restart = true;
+		}
+
+		if (restart) {
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+		}
 		/*
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
-
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-
 		rb.AddForce (movement * moveSpeed);
-
-		if (Input.GetKeyUp (KeyCode.Space)) {
-			for (int i = 0; i < skills.Length; i++) {
-				if (skills [i]) {
-					StartSkill (i);
-					break;
-				}
-			}
-		}
-*/
+		*/
 	}
 
 	void OnTriggerEnter(Collider other) 
 	{
-		if (other.gameObject.CompareTag ("Obstacle"))
-		{
-			other.gameObject.SetActive (false);
+		if (other.gameObject.CompareTag ("Coin")) {
+			Destroy (other.gameObject);
+		} else if (other.gameObject.CompareTag ("Cap_Obstacle")) {
+			// collide effect
+			/* ++++++ */
+			restart = true;
+		} else if (other.gameObject.CompareTag ("Red_Plane")) {
+			rend.sharedMaterial = redMaterial;
+			skillButton.color = Color.red;
+			skillFlag = true;
 		}
 	}
 
-	/*
-	void StartSkill(int index)
+	public bool isSkilled()
 	{
-		switch (index) {
-		case 0:
-			RedSkill ();
-			break;
-		case 1:
-			// orange skill
-			break;
-		case 2:
-			// yellow skill
-			break;
-		case 3:
-			// green skill
-			break;
-		case 4:
-			// cyan skill
-			break;
-		case 5:
-			// blue skill
-			break;
-		case 6:
-			// purple skill
-			break;
-		}
-	}
-
-	void RedSkill()
-	{
-		Camera cam = GetComponentInChildren<Camera> ();
-		Vector3 position = cam.transform.position;
-		if (skillsStat [0] == true) {
-			transform.localScale = new Vector3 (1, 1, 1);
-			skillsStat [0] = false;
-		} else {
-			transform.localScale = new Vector3 (4, 4, 4);
-			skillsStat [0] = true;
-		}
-		cam.transform.position = position;
-	}
-	*/
-
-	public bool[] getSkillsArray()
-	{
-		return this.skills;
+		return skillFlag;
 	}
 }

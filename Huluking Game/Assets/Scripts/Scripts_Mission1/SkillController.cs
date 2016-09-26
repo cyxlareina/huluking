@@ -6,6 +6,7 @@ using System.Collections;
 public class SkillController : MonoBehaviour,IPointerDownHandler {
 
 	public GameObject player;
+	public PlayerController playController;
 	public Camera cam;
 	private Image skillImg;
 	private bool flag;
@@ -14,6 +15,9 @@ public class SkillController : MonoBehaviour,IPointerDownHandler {
 	private void Start() {
 		flag = false;
 		skillImg = GetComponent<Image> ();
+		if (player != null) {
+			playController = player.GetComponent<PlayerController> ();
+		}
 	}
 
 	void RedSkill()
@@ -34,7 +38,9 @@ public class SkillController : MonoBehaviour,IPointerDownHandler {
 	{
 		Vector2 pos;
 		if (RectTransformUtility.ScreenPointToLocalPointInRectangle (skillImg.rectTransform, ped.position, ped.pressEventCamera, out pos)) {
-			RedSkill ();
+			if (playController != null && playController.isSkilled ()) {
+				RedSkill ();
+			}
 		}
 
 	}
