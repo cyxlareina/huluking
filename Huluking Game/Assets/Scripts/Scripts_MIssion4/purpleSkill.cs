@@ -32,7 +32,7 @@ public class purpleSkill : MonoBehaviour, IPointerDownHandler {
 	}
 
 	void Update(){
-		if (Input.GetKey (KeyCode.Space)) {
+		if (Input.GetKey (KeyCode.W)) {
 			PurpleSkill ();
 		}
 	}
