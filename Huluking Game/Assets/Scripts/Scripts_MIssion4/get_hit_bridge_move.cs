@@ -5,6 +5,7 @@ public class get_hit_bridge_move : MonoBehaviour {
 	public GameObject bridge;
 	public int go_down;
 	public int cur_pos;
+	public int total_range;
 	// Use this for initialization
 	void Start () {
 	
@@ -12,7 +13,7 @@ public class get_hit_bridge_move : MonoBehaviour {
 	void OnTriggerEnter (Collider other)
 	{
 		Destroy (other.gameObject);
-		if (cur_pos == 3)
+		if (cur_pos == total_range)
 			go_down = 1;
 		if (cur_pos == 0)
 			go_down = 0;

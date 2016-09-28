@@ -5,6 +5,7 @@ using System.Collections;
 public class purpleSkill : MonoBehaviour, IPointerDownHandler {
 	public GameObject player;
 	public GameObject bullet;
+	public GameObject bullet_rotation_x;
 
 	private Image skillImg;
 	private bool flag;
@@ -16,9 +17,15 @@ public class purpleSkill : MonoBehaviour, IPointerDownHandler {
 
 	void PurpleSkill()
 	{
+		Debug.Log ("bullet x: "+bullet_rotation_x.transform.rotation);
+		float x = bullet_rotation_x.transform.rotation.x;
+		float y = player.transform.rotation.y;
+		float z = player.transform.rotation.z;
+		float w = player.transform.rotation.w;
+		Quaternion rotation = new Quaternion (x, y, z, w);
 		//Camera cam = GetComponentInChildren<Camera> ();
 		if (flag) {
-			Instantiate(bullet, player.transform.position, player.transform.rotation);
+			Instantiate(bullet, player.transform.position, rotation);
 		}
 	}
 

@@ -2,10 +2,11 @@
 using System.Collections;
 
 public class kill_obstract : MonoBehaviour {
-	private int life;
+	public int life;
 	// Use this for initialization
 	void Start () {
-		life = 4;
+		if(life == 0)
+			life = 4;
 	}
 	
 	// Update is called once per frame
