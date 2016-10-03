@@ -24,6 +24,7 @@ public class FrontDoorController : MonoBehaviour {
 		if (transform.position.y >= 16.5) {
 			gameObject.SetActive (false);
 			playerController.moveSpeed = moveSpeedBK;
+			playerController.activateSkill ();
 		} else if (transform.position.y <= 0.5) {
 			gameObject.SetActive (true);
 		}
@@ -33,5 +34,6 @@ public class FrontDoorController : MonoBehaviour {
 	{
 		moveSpeedBK = playerController.moveSpeed;
 		playerController.moveSpeed = 0;
+		playerController.deactivateSkill ();
 	}
 }

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour {
 
 	public GameObject cam;
@@ -13,22 +15,24 @@ public class PlayerController : MonoBehaviour {
 	public Material redMaterial;
 	public Image skillButton;
 
-	private bool restart = false;
-	private bool skillFlag = true;
+	private bool restart;
+	private bool skillFlag;
 	private VirtualJoystick joystick;
 	private Renderer rend;
 	private float jumpPower = 400;
 	private Rigidbody rb;
 	private bool jumpFlag;
 	private bool flag = false;
+	private AudioSource audio;
 
 	void Start()
 	{
 		rb = GetComponent<Rigidbody> ();
 		restart = false;
-		skillFlag = true;
+		skillFlag = false;
 		jumpFlag = false;
 		joystick = backgroundImage.GetComponent<VirtualJoystick> ();
+		audio = GetComponent<AudioSource> ();
 		if (joystick == null) {
 			Debug.Log ("joystick is null");
 			return;
@@ -87,10 +91,14 @@ public class PlayerController : MonoBehaviour {
 			// collide effect
 			/* ++++++ */
 			restart = true;
-		} else if (other.gameObject.CompareTag ("Red_Plane")) {
+		} else if (other.gameObject.CompareTag ("Hulu")) {
 			rend.sharedMaterial = redMaterial;
 			skillButton.color = Color.red;
-			skillFlag = true;
+			activateSkill ();
+			Destroy (other.gameObject);
+		} else if (other.gameObject.CompareTag ("Bullet")) {
+			/* ++++++ */
+			restart = true;
 		}
 	}
 
@@ -102,12 +110,29 @@ public class PlayerController : MonoBehaviour {
 			} else {
 				jumpFlag = true;
 			}
+		} else if (collision.gameObject.CompareTag ("Cub_Obstacle")) {
+			if (transform.localScale.x == 1) {
+				/* ++++++ */
+				restart = true;
+			}
+		} else {
+			// audio.Play ();
 		}
 	}
 
 	public bool isSkilled()
 	{
 		return skillFlag;
+	}
+
+	public void deactivateSkill()
+	{
+		skillFlag = false;
+	}
+
+	public void activateSkill()
+	{
+		skillFlag = true;
 	}
 
 	void RedSkill()
