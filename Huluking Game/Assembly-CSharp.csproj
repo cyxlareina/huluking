@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Scripts_MIssion4\Destory_player.cs" />
      <Compile Include="Assets\Scripts\Scripts_MIssion4\bullet_move.cs" />
+     <Compile Include="Assets\Scripts\Scripts_MIssion4\getBridgeRotation.cs" />
      <Compile Include="Assets\Scripts\Scripts_MIssion4\get_hit_bridge_move.cs" />
      <Compile Include="Assets\Scripts\Scripts_MIssion4\kill_obstract.cs" />
      <Compile Include="Assets\Scripts\Scripts_MIssion4\moving_obs.cs" />
