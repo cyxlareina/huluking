@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (other.gameObject.CompareTag ("Coin")) {
 			Destroy (other.gameObject);
+			Debug.Log("test");
 		} else if (other.gameObject.CompareTag ("Cap_Obstacle")) {
 			// collide effect
 			/* ++++++ */

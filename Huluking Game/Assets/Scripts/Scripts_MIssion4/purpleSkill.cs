@@ -11,7 +11,7 @@ public class purpleSkill : MonoBehaviour, IPointerDownHandler {
 	private bool flag;
 	// Use this for initialization
 	private void Start() {
-		flag = true;
+		flag = false;
 		skillImg = GetComponent<Image> ();
 	}
 
@@ -39,8 +39,8 @@ public class purpleSkill : MonoBehaviour, IPointerDownHandler {
 	}
 
 	void Update(){
-		if (Input.GetKey (KeyCode.W)) {
-			PurpleSkill ();
+		if (skillImg.color == Color.green) {
+			flag = true;
 		}
 	}
 }

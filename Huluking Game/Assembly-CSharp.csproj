@@ -45,18 +45,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Scripts_MIssion4\Destory_bullet.cs" />
      <Compile Include="Assets\Scripts\Scripts_MIssion4\Destory_player.cs" />
+     <Compile Include="Assets\Scripts\Scripts_MIssion4\Mission4_Player_Controller.cs" />
+     <Compile Include="Assets\Scripts\Scripts_MIssion4\Rotate_Point.cs" />
      <Compile Include="Assets\Scripts\Scripts_MIssion4\bullet_move.cs" />
      <Compile Include="Assets\Scripts\Scripts_MIssion4\getBridgeRotation.cs" />
      <Compile Include="Assets\Scripts\Scripts_MIssion4\get_hit_bridge_move.cs" />
      <Compile Include="Assets\Scripts\Scripts_MIssion4\kill_obstract.cs" />
      <Compile Include="Assets\Scripts\Scripts_MIssion4\moving_obs.cs" />
      <Compile Include="Assets\Scripts\Scripts_MIssion4\purpleSkill.cs" />
-     <Compile Include="Assets\Scripts\Scripts_Mission1\CoinController.cs" />
+     <Compile Include="Assets\Scripts\Scripts_MIssion4\rotate_bridge.cs" />
+     <Compile Include="Assets\Scripts\Scripts_MIssion4\rotated_obstracted.cs" />
+     <Compile Include="Assets\Scripts\Scripts_Mission1\FrontDoorController.cs" />
+     <Compile Include="Assets\Scripts\Scripts_Mission1\GameController.cs" />
+     <Compile Include="Assets\Scripts\Scripts_Mission1\LiftController.cs" />
+     <Compile Include="Assets\Scripts\Scripts_Mission1\LiftMachineController.cs" />
+     <Compile Include="Assets\Scripts\Scripts_Mission1\Mover.cs" />
      <Compile Include="Assets\Scripts\Scripts_Mission1\Obs_03Controller.cs" />
+     <Compile Include="Assets\Scripts\Scripts_Mission1\PianoTriggerController.cs" />
      <Compile Include="Assets\Scripts\Scripts_Mission1\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Scripts_Mission1\RotateController.cs" />
      <Compile Include="Assets\Scripts\Scripts_Mission1\SkillController.cs" />
      <Compile Include="Assets\Scripts\Scripts_Mission1\VirtualJoystick.cs" />
+     <Compile Include="Assets\Scripts\Scripts_Mission1\WeaponController.cs" />
+     <Compile Include="Assets\Scripts\Scripts_Mission1\WindmillController.cs" />
+     <Compile Include="Assets\bullet_coin.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

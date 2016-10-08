@@ -1,9 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Scripts_MIssion4/purpleSkill.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/bullet_coin.cs">
     <Files>
-      <File FileName="Assets/Scripts/Scripts_MIssion4/purpleSkill.cs" Line="35" Column="30" />
-      <File FileName="Assets/Scripts/Scripts_Mission1/PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Scripts_MIssion4/Mission4_Player_Controller.cs" Line="90" Column="1" />
+      <File FileName="Assets/Scripts/Scripts_MIssion4/Destory_bullet.cs" Line="5" Column="1" />
+      <File FileName="Assets/bullet_coin.cs" Line="9" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
