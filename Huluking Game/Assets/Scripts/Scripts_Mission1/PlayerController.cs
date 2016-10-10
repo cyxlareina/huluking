@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour {
 
 	public GameObject cam;
+	public Text countText;
 
 	public float moveSpeed;
 	public float rotateSpeed;
@@ -19,11 +20,12 @@ public class PlayerController : MonoBehaviour {
 	private bool skillFlag;
 	private VirtualJoystick joystick;
 	private Renderer rend;
-	private float jumpPower = 400;
+	private float jumpPower = 600;
 	private Rigidbody rb;
 	private bool jumpFlag;
 	private bool flag = false;
 	private AudioSource audio;
+	private int count;
 
 	void Start()
 	{
@@ -43,6 +45,8 @@ public class PlayerController : MonoBehaviour {
 		}
 		rend = GetComponent<Renderer> ();
 		rend.enabled = true;
+		count = 0;
+		countText.text = "Score: " + count.ToString ();
 	}
 
 	void Update()
@@ -87,7 +91,11 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (other.gameObject.CompareTag ("Coin")) {
 			Destroy (other.gameObject);
+			count = count + 1;
+			countText.text = "Score: " + count.ToString ();
+
 			Debug.Log("test");
+
 		} else if (other.gameObject.CompareTag ("Cap_Obstacle")) {
 			// collide effect
 			/* ++++++ */
@@ -110,11 +118,6 @@ public class PlayerController : MonoBehaviour {
 				Destroy (collision.gameObject);
 			} else {
 				jumpFlag = true;
-			}
-		} else if (collision.gameObject.CompareTag ("Cub_Obstacle")) {
-			if (transform.localScale.x == 1) {
-				/* ++++++ */
-				restart = true;
 			}
 		} else {
 			// audio.Play ();
